@@ -1,0 +1,303 @@
+drop table member cascade constraints;
+drop table period cascade constraints;
+drop table trainer cascade constraints;
+drop table health cascade constraints;
+drop table messagebox cascade constraints;
+drop table Bulletinboard cascade constraints;
+drop table payment cascade constraints;
+
+
+
+drop sequence healthseq;
+drop sequence MsSeq;
+drop sequence BBseq;
+drop sequence payseq;
+
+
+create table MEMBER(
+	MEMBER_NO number(10) not null,
+	MEM_PW varchar2(30),
+	MEM_NAME varchar2(20) not null,
+	MEM_GENDER varchar2(10),
+	MEM_PHONE varchar2(15),
+	PERIOD varchar2(20),
+	TRAINER_NO number(10),
+constraint MEMBER_MEMBER_NO_pk primary key(MEMBER_NO)
+);
+
+create table PERIOD(
+	PERIOD varchar2(20) not null,
+	PRICE number,
+constraint PERIOD_period_pk primary key (PERIOD)
+);
+
+create table TRAINER(
+	TRAINER_NO number(10),
+	TRAINER_NAME varchar2(20),
+	TRAINER_GENDER varchar2(5),
+	TRAINER_PHONE varchar2(15),
+	TRAINER_SNS varchar2(30),
+	TRAINER_IMAGE varchar2(50),
+constraint TRAINER_TRAINER_NO primary key(TRAINER_NO)
+);
+
+
+create table Health(
+	reservation_no  number(10),
+            member_no number(10),
+	tool varchar2(30),
+	date1 varchar2(30),
+	time1 varchar2(30)
+);
+create sequence healthseq;
+
+
+create table MessageBox(
+	Ms_no number,
+   	send_id number(10),
+   	receive_id number(10),
+  	Ms_content varchar2(100),
+   	Ms_check varchar2(15),
+constraint MESSAGEBOX_MSNO_pk primary key (MS_NO)
+);
+
+create sequence MsSeq;
+
+
+create table BulletinBoard(
+	BB_no number,
+	member_no number(10),
+	subject varchar2(100),
+	BB_content varchar2(100),
+constraint BB_BNo_pk primary key (BB_no)
+);
+create sequence BBseq;
+
+
+create table payment(
+	pay_no number,
+	member_no number(10),
+	money number,
+	pay_date date,
+	pay_method varchar2(20),
+constraint pm_no_pk primary key(pay_no)
+);
+
+create sequence payseq;
+
+
+insert into member values (0000, '0000', '관리자', '남', '010-7468-1257', '9개월', null);
+insert into member values (0001, '0001', '김동원', '남', '010-0001-0001', '6개월', 9999);
+insert into member values (0002, '0002', '김미희', '여', '010-0002-0002', '6개월', 9999);
+insert into member values (0003, '0003', '최성우', '남', '010-0003-0003', '6개월', 9999);
+insert into member values (1212, '1212' ,'줄리엔강', '남', '010-1111-1111', '6개월', 0001);
+insert into member values (1535, '1535' ,'송용묵', '남', '010-2222-2222', '6개월', 0001);
+insert into member values (3333, '3333', '황철순', '남', '010-3333-3333', '9개월', 0002);
+insert into member values (4444, '4444', '장경환', '남', '010-4444-4444', '3개월', 0003);
+insert into member values (5555, '5555', '박양주', '여', '010-5555-5555', '6개월', 0001);
+insert into member values (6665, '6665', '김민준', '남', '010-7518-1417', '9개월', 0002);
+insert into member values (6666, '6666' ,'박서준', '남', '010-1123-1241', '6개월', 0001);
+insert into member values (7777, '7777' ,'박예준', '남', '010-7622-2298', '6개월', 0001);
+insert into member values (8888, '8888', '김도윤', '남', '010-3543-3133', '9개월', 0002);
+insert into member values (9878, '9878', '김시우', '남', '010-4244-5144', '3개월', 0003);
+insert into member values (1010, '1010', '이서연', '여', '010-8455-5085', '6개월', 0001);
+insert into member values (1011, '1011', '고주원', '남', '010-8908-1257', '9개월', 0001);
+insert into member values (1012, '1012' ,'김주원', '남', '010-5211-1671', '6개월', 0001);
+insert into member values (1013, '1013' ,'오준서', '남', '010-8026-2782', '6개월', 0001);
+insert into member values (1014, '1014', '유현우', '남', '010-3743-1233', '9개월', 0002);
+insert into member values (1015, '1015', '박도헌', '남', '010-4744-1244', '3개월', 0003);
+insert into member values (1016, '1016', '이하은', '여', '010-5792-1245', '6개월', 0001);
+insert into member values (1017, '1017', '유우진', '남', '010-7018-6757', '9개월', 0002);
+insert into member values (1018, '1018' ,'김지훈', '남', '010-1098-1151', '6개월', 0001);
+insert into member values (1019, '1019' ,'유승우', '남', '010-5722-9712', '6개월', 0001);
+insert into member values (1020, '1020', '하정우', '남', '010-1523-7233', '9개월', 0002);
+insert into member values (1021, '1021', '차은우', '남', '010-0814-1254', '3개월', 0003);
+insert into member values (1022, '1022', '박채은', '여', '010-0015-5185', '6개월', 0001);
+insert into member values (9999, null, '선택안함', null, null, null, null);
+
+
+insert into period values ('3개월', 100000);
+insert into period values ('6개월', 200000);
+insert into period values ('9개월', 300000);
+insert into period values ('12개월', 400000);
+
+insert into trainer values(0001, '김동원', '남', '010-0001-0001', 'trainer1_follow', '트레이너1.png');
+insert into trainer values(0002, '김미희', '여', '010-0002-0002', 'trainer2_follow', '트레이너2.png');
+insert into trainer values(0003, '최성우', '남', '010-0003-0003', 'trainer3_follow', '트레이너3.png');
+insert into trainer values(9999, '선택안함', null, null, null, null);
+
+insert into health values (healthseq.nextval, 1012, '스미스머신', '21/01/02', '18:00~18:30');
+insert into health values (healthseq.nextval, 3333, '스미스머신', '21/01/03', '18:30~19:00');
+insert into health values (healthseq.nextval, 4444, '스미스머신', '21/01/04', '19:00~19:30');
+insert into health values (healthseq.nextval, 5555, '스미스머신', '21/01/02', '19:30~20:00');
+
+
+insert into messagebox values (msseq.nextval, 0000, 0000, '관리자님 환영해요!', '미확인');
+insert into messagebox values (msseq.nextval, 0000, 1012, '가입을 환영합니다!', '미확인');
+insert into messagebox values (msseq.nextval, 0000, 3333, '가입을 환영합니다!', '미확인');
+insert into messagebox values (msseq.nextval, 0000, 4444, '가입을 환영합니다!', '미확인');
+insert into messagebox values (msseq.nextval, 0000, 5555, '가입을 환영합니다!', '미확인');
+
+
+insert into bulletinboard values (bbseq.nextval, 0000, '헬스장 개업축하!', '헬스장 개장했습니다!!!');
+insert into bulletinboard values (bbseq.nextval, 1212, '하체운동 같이 하실 분?', '처음하는데 같이 운동하면 좋을꺼같아요~');
+insert into bulletinboard values (bbseq.nextval, 1535, '상체 잘하시는분있나요?', '혼자하려니 막막하네요 같이하실분 ㅜㅜ ');
+insert into bulletinboard values (bbseq.nextval, 3333, '헬린이 구합니다', '진짜쌩초보운동첨시작하는 헬린이 구합니다.....');
+insert into bulletinboard values (bbseq.nextval, 4444, '가입했습니다!', '처음입니다!!!');
+insert into bulletinboard values (bbseq.nextval, 5555, '헬스장 진짜좋은듯!', '저 여기보다 좋은데 못봄 짱임');
+insert into bulletinboard values (bbseq.nextval, 6665, '운동잘하는사람~~~~', '한수배우고싶습니다');
+insert into bulletinboard values (bbseq.nextval, 6666, '여성분중에 같이하실분있나요 ㅠㅠ', '같이...유튜브라도...보실분 !!! ');
+insert into bulletinboard values (bbseq.nextval, 7777, '오늘 날씨 진짜좋은거같아요~', '운동하기 딱 좋은 날ㅆ ㅣㅣㅣ');
+insert into bulletinboard values (bbseq.nextval, 8888, '운동친구 구함', '못해도 상관없어요 ~');
+insert into bulletinboard values (bbseq.nextval, 1010, '혹시ㅣㅣㅣ 운동끝나고 같이 밥먹으실분있나요?', '저는 일단 아무거나 잘먹씁니다.');
+insert into bulletinboard values (bbseq.nextval, 1011, '벤치프레스 잘하시는분?????', '무게치는데 안늘어나는거같은데..원인이 뭘까요??');
+insert into bulletinboard values (bbseq.nextval, 1012, '하체가 너무 힘드네요', '오늘은 그래서 상체운동하려고요 ㅠ');
+insert into bulletinboard values (bbseq.nextval, 1013, '으아ㅏㅏㅏㅏㅏㅏㅏ', '운동하기 싫다ㅏㅏㅏㅏㅏ');
+insert into bulletinboard values (bbseq.nextval, 1014, '헬스는 지옥이다', '아니 사실 천국이다');
+insert into bulletinboard values (bbseq.nextval, 1015, '헬린이 구합니다', '진짜쌩초보운동첨시작하는 헬린이 구합니다.....');
+insert into bulletinboard values (bbseq.nextval, 1016, '가입했습니다!', '처음입니다!!!');
+insert into bulletinboard values (bbseq.nextval, 1017, '헬스하기 딱 좋아', '오늘 기분 짱임');
+insert into bulletinboard values (bbseq.nextval, 1018, '헬스장 진짜좋은듯!', '저 여기보다 좋은데 못봄 짱임');
+insert into bulletinboard values (bbseq.nextval, 1019, '운동잘하는사람~~~~', '한수배우고싶습니다');
+insert into bulletinboard values (bbseq.nextval, 1020, '오늘 날씨 진짜좋은거같아요~', '운동하기 딱 좋은 날ㅆ ㅣㅣㅣ');
+
+
+
+insert into payment values(payseq.nextval, 1012, 100000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 3333, 200000, '2021-01-03', '카드');
+insert into payment values(payseq.nextval, 4444, 300000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 5555, 100000, '2021-01-03', '카드');
+insert into payment values(payseq.nextval, 1011, 200000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 1010, 100000, '2020-03-03', '현금');
+insert into payment values(payseq.nextval, 1011, 200000, '2020-04-03', '카드');
+insert into payment values(payseq.nextval, 1012, 300000, '2020-05-03', '현금');
+insert into payment values(payseq.nextval, 1013, 100000, '2020-06-03', '카드');
+insert into payment values(payseq.nextval, 1014, 200000, '2020-07-03', '현금');
+insert into payment values(payseq.nextval, 1015, 100000, '2019-03-01', '현금');
+insert into payment values(payseq.nextval, 1016, 200000, '2019-02-02', '카드');
+insert into payment values(payseq.nextval, 1017, 300000, '2019-04-07', '현금');
+insert into payment values(payseq.nextval, 1018, 100000, '2019-05-09', '카드');
+insert into payment values(payseq.nextval, 1019, 200000, '2019-07-10', '현금');
+insert into payment values(payseq.nextval, 1020, 100000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 1021, 200000, '2021-01-03', '카드');
+insert into payment values(payseq.nextval, 1022, 300000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 6666, 100000, '2021-01-03', '카드');
+insert into payment values(payseq.nextval, 7777, 200000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 8888, 100000, '2020-03-03', '현금');
+insert into payment values(payseq.nextval, 9999, 200000, '2020-04-03', '카드');
+insert into payment values(payseq.nextval, 1010, 300000, '2020-05-03', '현금');
+insert into payment values(payseq.nextval, 1012, 100000, '2020-06-03', '카드');
+insert into payment values(payseq.nextval, 1011, 200000, '2020-07-03', '현금');
+insert into payment values(payseq.nextval, 1022, 100000, '2019-03-01', '현금');
+insert into payment values(payseq.nextval, 1013, 200000, '2019-02-02', '카드');
+insert into payment values(payseq.nextval, 1014, 300000, '2019-04-07', '현금');
+insert into payment values(payseq.nextval, 1015, 100000, '2019-05-09', '카드');
+insert into payment values(payseq.nextval, 1016, 200000, '2019-07-10', '현금');
+insert into payment values(payseq.nextval, 1011, 100000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 3333, 200000, '2021-01-03', '카드');
+insert into payment values(payseq.nextval, 4444, 300000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 5555, 100000, '2021-01-03', '카드');
+insert into payment values(payseq.nextval, 1012, 200000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 1010, 100000, '2020-03-03', '현금');
+insert into payment values(payseq.nextval, 1011, 200000, '2020-04-03', '카드');
+insert into payment values(payseq.nextval, 1012, 300000, '2020-05-03', '현금');
+insert into payment values(payseq.nextval, 1013, 100000, '2020-06-03', '카드');
+insert into payment values(payseq.nextval, 1014, 200000, '2020-07-03', '현금');
+insert into payment values(payseq.nextval, 1015, 100000, '2019-03-01', '현금');
+insert into payment values(payseq.nextval, 1016, 200000, '2019-02-02', '카드');
+insert into payment values(payseq.nextval, 1017, 300000, '2019-04-07', '현금');
+insert into payment values(payseq.nextval, 1018, 100000, '2019-05-09', '카드');
+insert into payment values(payseq.nextval, 1019, 200000, '2019-07-10', '현금');
+insert into payment values(payseq.nextval, 1020, 100000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 1021, 200000, '2021-01-03', '카드');
+insert into payment values(payseq.nextval, 1022, 300000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 6666, 100000, '2021-01-03', '카드');
+insert into payment values(payseq.nextval, 7777, 200000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 8888, 100000, '2020-03-03', '현금');
+insert into payment values(payseq.nextval, 9999, 200000, '2020-04-03', '카드');
+insert into payment values(payseq.nextval, 1010, 300000, '2020-05-03', '현금');
+insert into payment values(payseq.nextval, 1012, 100000, '2020-06-03', '카드');
+insert into payment values(payseq.nextval, 1011, 200000, '2020-07-03', '현금');
+insert into payment values(payseq.nextval, 1022, 100000, '2019-03-01', '현금');
+insert into payment values(payseq.nextval, 1013, 200000, '2019-02-02', '카드');
+insert into payment values(payseq.nextval, 1014, 300000, '2019-04-07', '현금');
+insert into payment values(payseq.nextval, 1015, 100000, '2019-05-09', '카드');
+insert into payment values(payseq.nextval, 1016, 200000, '2019-07-10', '현금');
+insert into payment values(payseq.nextval, 1012, 100000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 3333, 200000, '2021-01-03', '카드');
+insert into payment values(payseq.nextval, 4444, 300000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 5555, 100000, '2021-01-03', '카드');
+insert into payment values(payseq.nextval, 1012, 200000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 1010, 100000, '2020-03-03', '현금');
+insert into payment values(payseq.nextval, 1011, 200000, '2020-04-03', '카드');
+insert into payment values(payseq.nextval, 1012, 300000, '2020-05-03', '현금');
+insert into payment values(payseq.nextval, 1013, 100000, '2020-06-03', '카드');
+insert into payment values(payseq.nextval, 1014, 200000, '2020-07-03', '현금');
+insert into payment values(payseq.nextval, 1015, 100000, '2019-03-01', '현금');
+insert into payment values(payseq.nextval, 1016, 200000, '2019-02-02', '카드');
+insert into payment values(payseq.nextval, 1017, 300000, '2019-04-07', '현금');
+insert into payment values(payseq.nextval, 1018, 100000, '2019-05-09', '카드');
+insert into payment values(payseq.nextval, 1019, 200000, '2019-07-10', '현금');
+insert into payment values(payseq.nextval, 1020, 100000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 1021, 200000, '2021-01-03', '카드');
+insert into payment values(payseq.nextval, 1022, 300000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 6666, 100000, '2021-01-03', '카드');
+insert into payment values(payseq.nextval, 7777, 200000, '2021-01-03', '현금');
+insert into payment values(payseq.nextval, 8888, 100000, '2020-03-03', '현금');
+insert into payment values(payseq.nextval, 9999, 200000, '2020-04-03', '카드');
+insert into payment values(payseq.nextval, 1010, 300000, '2020-05-03', '현금');
+insert into payment values(payseq.nextval, 1012, 100000, '2020-06-03', '카드');
+insert into payment values(payseq.nextval, 1011, 200000, '2020-07-03', '현금');
+insert into payment values(payseq.nextval, 1022, 100000, '2019-03-01', '현금');
+insert into payment values(payseq.nextval, 1013, 200000, '2019-02-02', '카드');
+insert into payment values(payseq.nextval, 1014, 300000, '2019-04-07', '현금');
+insert into payment values(payseq.nextval, 1015, 100000, '2019-05-09', '카드');
+insert into payment values(payseq.nextval, 1016, 200000, '2019-07-10', '현금');
+
+
+
+
+alter table member 
+add constraint member_period_fk foreign key (period) references period (period);
+alter table member
+add constraint member_TNo_fk foreign key (trainer_no) references trainer (trainer_no);
+
+
+
+alter table health
+add constraint health_MNo_fk foreign key (member_no) references member(member_no);
+
+
+alter table trainer
+add constraint trainer_tno_fk foreign key (trainer_no) references member (member_no);
+
+
+alter table messagebox
+add constraint ms_rid_fk foreign key (receive_id) references member(member_no);
+
+alter table bulletinboard
+add constraint bb_MNo_fk foreign key (member_no) references member(member_no);
+
+alter table payment
+add constraint pm_MNo_fk foreign key (member_no) references member(member_no);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
